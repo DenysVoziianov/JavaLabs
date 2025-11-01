@@ -140,4 +140,3 @@ public class LW_1 {
         return (double) sum / count;
     }
 }
-
