@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Department {
     private String name;
     private Human head;
@@ -9,13 +11,25 @@ public class Department {
         this.head = head;
     }
 
-    // Геттери
     public String getName() { return name; }
     public Human getHead() { return head; }
 
-    // Сеттери
     public void setName(String name) { this.name = name; }
     public void setHead(Human head) { this.head = head; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(head, that.head);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, head);
+    }
 
     @Override
     public String toString() {

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Faculty {
     private String name;
@@ -16,13 +17,11 @@ public class Faculty {
         this.groups = new ArrayList<>();
     }
 
-    // Геттери
     public String getName() { return name; }
     public Human getHead() { return head; }
     public List<Department> getDepartments() { return departments; }
     public List<Group> getGroups() { return groups; }
 
-    // Сеттери
     public void setName(String name) { this.name = name; }
     public void setHead(Human head) { this.head = head; }
 
@@ -32,6 +31,22 @@ public class Faculty {
 
     public void addGroup(Group group) {
         groups.add(group);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Faculty faculty = (Faculty) o;
+        return Objects.equals(name, faculty.name) &&
+                Objects.equals(head, faculty.head) &&
+                Objects.equals(departments, faculty.departments) &&
+                Objects.equals(groups, faculty.groups);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, head, departments, groups);
     }
 
     @Override
